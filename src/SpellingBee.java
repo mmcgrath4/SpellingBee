@@ -63,9 +63,9 @@ public class SpellingBee {
     //Changing somethingfds
     public void sort() {
         words = mergeSort(words, 0, words.size() - 1);
-        for (String word : words) {
-            System.out.println(word);
-        }
+//        for (String word : words) {
+//            System.out.println(word);
+//        }
     }
 
     public ArrayList<String> mergeSort(ArrayList<String> words, int low, int high) {
@@ -119,7 +119,31 @@ public class SpellingBee {
     // TODO: For each word in words, use binary search to see if it is in the dictionary.
     //  If it is not in the dictionary, remove it from words.
     public void checkWords() {
-        // YOUR CODE HERE
+        int i = 0;
+        while (i < words.size()) {
+            if (!binarySearch(words.get(i), DICTIONARY, 0, DICTIONARY_SIZE -1)){
+                words.remove(i);
+                i--;
+            }
+            i ++;
+        }
+    }
+
+    public boolean binarySearch(String word, String[] dictionary, int low, int high) {
+        if (low > high) {
+            return false;
+        }
+        int med = (high + low) / 2;
+        if (dictionary[med].equals(word)) {
+            return true;
+        }
+        if (dictionary[med].compareTo(word) > 0) {
+            high = med - 1;
+        }
+        else {
+            low = med + 1;
+        }
+        return binarySearch(word, dictionary, low, high);
     }
 
     // Prints all valid words to wordList.txt

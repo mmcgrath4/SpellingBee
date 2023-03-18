@@ -97,7 +97,7 @@ public class SpellingBee {
                 j++;
             }
         }
-        // Adds excess elements because we know they are sorted
+        // Adds excess elements because they have been sorted already
         while (i < arr1.size()) {
             merged.add(arr1.get(i));
             i++;

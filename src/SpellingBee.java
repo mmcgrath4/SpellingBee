@@ -49,32 +49,35 @@ public class SpellingBee {
     }
 
     public void findWords(String word, String letters) {
+        // Adds current combination of letters to words list
+        words.add(word);
+        // Base Case: if full length word has been created
         if (letters.length() == 0) {
-            words.add(word);
             return;
         }
         for (int i = 0; i < letters.length(); i ++) {
+            // Recursively calls this method
+            // Takes away a letter from letters and adds it to the word
             findWords(word + letters.charAt(i), letters.substring(0,i) + letters.substring(i + 1));
         }
     }
 
     // TODO: Apply mergesort to sort all words. Do this by calling ANOTHER method
     //  that will find the substrings recursively.
-    //Changing somethingfds
     public void sort() {
         words = mergeSort(words, 0, words.size() - 1);
-//        for (String word : words) {
-//            System.out.println(word);
-//        }
+
     }
 
     public ArrayList<String> mergeSort(ArrayList<String> words, int low, int high) {
+        // Base Case: if ArrayList words is 1 individual word
         if (high - low == 0) {
             ArrayList<String> newArr = new ArrayList<>();
             newArr.add(words.get(low));
             return newArr;
         }
         int med = (high + low) / 2;
+        // Recursively divides the array into two halves and then merges those arrays when the base case returns a single element
         ArrayList<String> arr1 = mergeSort(words, low, med);
         ArrayList<String> arr2 = mergeSort(words, med + 1, high);
         return merge(arr1, arr2);
@@ -84,6 +87,7 @@ public class SpellingBee {
         ArrayList<String> merged = new ArrayList<>();
         int i = 0, j = 0;
         while (i < arr1.size() && j < arr2.size()) {
+            // Compares elements from both arrays and indexes forward once that elemtent has been sorted
             if (arr1.get(i).compareTo(arr2.get(j)) < 0) {
                 merged.add(arr1.get(i));
                 i++;
@@ -93,6 +97,7 @@ public class SpellingBee {
                 j++;
             }
         }
+        // Adds excess elements because we know they are sorted
         while (i < arr1.size()) {
             merged.add(arr1.get(i));
             i++;
@@ -121,6 +126,7 @@ public class SpellingBee {
     public void checkWords() {
         int i = 0;
         while (i < words.size()) {
+            // Removes the word from the ArrayList if it is not in the dictionary
             if (!binarySearch(words.get(i), DICTIONARY, 0, DICTIONARY_SIZE -1)){
                 words.remove(i);
                 i--;
@@ -130,19 +136,24 @@ public class SpellingBee {
     }
 
     public boolean binarySearch(String word, String[] dictionary, int low, int high) {
+        // Base Case: returns false if the word has not been found and the whole dictionary has been searched
         if (low > high) {
             return false;
         }
         int med = (high + low) / 2;
+        // Base Case: returns true if the word has been found
         if (dictionary[med].equals(word)) {
             return true;
         }
+        // Sets new dictionary to the first half if the middle word is greater than the target
         if (dictionary[med].compareTo(word) > 0) {
             high = med - 1;
         }
+        // Sets new dictionary to the second half if the middle word is less than the target
         else {
             low = med + 1;
         }
+        // recursively searches the new half of the dictionary
         return binarySearch(word, dictionary, low, high);
     }
 

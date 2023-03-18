@@ -106,6 +106,7 @@ public class SpellingBee {
             merged.add(arr2.get(j));
             j++;
         }
+        // Returns sorted ArrayList
         return merged;
     }
 
@@ -153,7 +154,7 @@ public class SpellingBee {
         else {
             low = med + 1;
         }
-        // recursively searches the new half of the dictionary
+        // Recursively searches the new half of the dictionary
         return binarySearch(word, dictionary, low, high);
     }
 

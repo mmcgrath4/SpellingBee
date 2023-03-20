@@ -106,7 +106,7 @@ public class SpellingBee {
             merged.add(arr2.get(j));
             j++;
         }
-        // Returns sorted ArrayList
+        // Returns sorted ArrayList (merged)
         return merged;
     }
 

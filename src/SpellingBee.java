@@ -63,7 +63,7 @@ public class SpellingBee {
     }
 
     // TODO: Apply mergesort to sort all words. Do this by calling ANOTHER method
-    // that will find the substrings recursively.
+    //  that will find the substrings recursively.
     public void sort() {
         words = mergeSort(words, 0, words.size() - 1);
 

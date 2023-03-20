@@ -51,7 +51,7 @@ public class SpellingBee {
     public void findWords(String word, String letters) {
         // Adds current combination of letters to words list
         words.add(word);
-        // Base Case: if full length word has been created
+        // Base Case: if full length word has been created it returns
         if (letters.length() == 0) {
             return;
         }

@@ -87,7 +87,7 @@ public class SpellingBee {
         ArrayList<String> merged = new ArrayList<>();
         int i = 0, j = 0;
         while (i < arr1.size() && j < arr2.size()) {
-            // Compares elements from both arrays and indexes forward once that elemtent has been sorted
+            // Compares elements from both arrays and indexes forward once that element has been sorted
             if (arr1.get(i).compareTo(arr2.get(j)) < 0) {
                 merged.add(arr1.get(i));
                 i++;
